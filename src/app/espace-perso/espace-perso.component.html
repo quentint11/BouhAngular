@@ -1,0 +1,161 @@
+
+<div class="container">
+        <div class="row -spacing-a">
+          <div class="col-md-12">
+            <h1>Profil</h1>
+          </div>
+        </div>
+        <div class="row -spacing-a">
+            <div class="col-md-4">
+                <div class="profile-image">
+                  <img src="assets/images/{{ image }}" class="fullwidth" />
+                  <div class="edit-profile-image" data-toggle="modal" data-target="#exampleModal">
+                  <span class="edit-profile-image__information">
+                    <span class="fa fa-camera"></span>
+                    <span class="edit-profile-image__label">
+                      selection image
+                    </span>
+                  </span>
+                </div>
+                </div>
+
+                <!-- Modal Galerie-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Selection image de profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                        <form>
+                          <div class="modal-body row">
+
+                            <!-- liste images -->
+                            <div *ngFor="let uneImage of listeImage" class="col-lg-5" padding-left="2.2em">
+
+                              <a (click)="onImageSelectionne(uneImage.TITRE_IMG)" style="cursor: pointer;">
+
+                                <img src="assets/images/{{ uneImage.TITRE_IMG }}" width="100%" />
+                              </a>
+                            </div>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Fermer</button>
+                            <button (click)="onChangerImage()" type="submit" class="btn btn-outline-success">Changer image</button>
+                          </div>
+                        </form>
+                    </div>
+                  </div>
+                </div>    
+            </div>
+          <div class="col-md-8">
+            <h5>INFORMATIONS PERSONNELLES</h5>
+            <div class="row -spacing-b">
+              <div class="col-md-3">
+                <p class="-typo-copy">Pseudo</p>
+                <p class="-typo-copy">Nom</p>
+                <p class="-typo-copy">Prenom</p>
+                <p class="-typo-copy">E-Mail</p>
+              </div>
+              <div class="col-md-3">
+                  <p class="-typo-copy -typo-copy--blue">{{ pseudo }}</p>
+                  <p class="-typo-copy -typo-copy--blue">{{ nom }}</p>
+                  <p class="-typo-copy -typo-copy--blue">{{ prenom }}</p>
+                  <p class="-typo-copy -typo-copy--blue">{{ mail }}</p>
+              </div>
+              <div class="col-md-3">
+                <p class="-typo-copy">LVL<br>Experience</p>
+                
+                
+                
+              </div>
+              <div class="col-md-3">
+                <p class="-typo-copy -typo-copy--blue">{{ niveau }}<br>{{ experience }}</p>
+              </div>
+            </div>
+          </div>  
+        </div>
+
+        <br /> <br />
+
+        <div class="container">
+          <!-- information connecter -->
+          <div *ngIf="compteModifier" class="alert alert-success" role="alert">
+              Vos infos personnelles ont été modifié !
+          </div>
+  
+          <!-- information bidouillage -->
+          <div *ngIf="bidouiller" class="alert alert-warning" role="alert">
+              Arrete de de faire ton Jean-Michel bidouille ! <br /><b> je t'est cramé :p</b> <br />
+              Pour la peine je te montre un petit tour de magie !
+          </div>
+  
+              <!-- information connecter -->
+          <div *ngIf="erreurHttp" class="alert alert-danger" role="alert">
+              Une erreur est survenu veuillez réessayer plus tard !
+          </div>
+
+      </div>
+
+      
+
+   <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button style="text-decoration: none;" class="btn btn-link text-dark" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Gestion des Informations personnelles
+                    </button>
+                </h2>
+            </div>
+      
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form #f="ngForm">
+
+                        <p>Ne toucher pas les informations que vous ne voulez pas modifier</p>
+
+                        <input type="hidden" name="ID_UTILISATEUR" [ngModel]="id" />
+                        <div class="form-row">
+                            
+                            <!-- nom -->
+                            <div class="input-group col-lg-6">
+                                <div class="input-group-prepend">
+                                <span style="padding-left: 40px; width: 130px;" class="input-group-text bg-secondary text-white" id="basic-addon3">Nom*</span>
+                                </div>
+                                <input type="email" name="NOM_UTILISATEUR" maxlength="50" class="form-control bg-light" aria-describedby="basic-addon3" [(ngModel)]="nom" required />
+                            </div>
+                
+                            <!-- prenom -->
+                            <div class="input-group col-lg-6">
+                                <div class="input-group-prepend">
+                                <span style="padding-left: 25px; width: 130px;" class="input-group-text bg-secondary text-white" id="basic-addon3">Prenom*</span>
+                                </div>
+                                <input type="email" name="PRENOM_UTILISATEUR" maxlength="50" class="form-control bg-light" aria-describedby="basic-addon3" [(ngModel)]="prenom" required />
+                            </div>
+                
+                            <!-- telephone -->
+                            <div class="input-group col-lg-6">
+                                <div class="input-group-prepend">
+                                <span style="padding-left: 15px; width: 130px;" class="input-group-text bg-secondary text-white" id="basic-addon3">Telephone*</span>
+                                </div>
+                                <input type="tel" name="TEL_UTILISATEUR" maxlength="10" class="form-control bg-light" aria-describedby="basic-addon3" [(ngModel)]="telephone" required />
+                            </div>
+                
+                        </div>
+                
+                        <div class="boutton">
+                            <button class="btn btn-outline-success" [disabled]="f.invalid" (click)="onModifierInformationsUtilisateur(f)">Valider</button>
+                        </div>
+                
+                    </form>
+            
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

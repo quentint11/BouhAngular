@@ -1,0 +1,46 @@
+<div class="container">
+
+  <br /><br /><br />
+  <h2>Connexion</h2>
+  <br />
+    <form #f="ngForm">
+      
+    <!-- login (mail) -->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text bg-secondary text-white" id="basic-addon3">Login</span>
+        </div>
+        <input type="email" name="MAIL_UTILISATEUR" class="form-control bg-light" placeholder="Mail" aria-describedby="basic-addon3" ngModel required />
+      </div>
+
+      <!-- MDP -->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text bg-secondary text-white" id="basic-addon1">Mot de passe</span>
+        </div>
+        <input type="password" name="MOTDEPASSE_UTILISATEUR" class="form-control bg-light" placeholder="mot de passe" aria-describedby="basic-addon1" ngModel required />
+      </div>
+
+      <button class="btn btn-outline-success" (click)="onLogIn(f)" [disabled]="f.invalid">Valider</button>
+      
+    </form>
+
+    <!-- information erreur de log -->
+    <div *ngIf="erreurLog" class="alert alert-danger" role="alert">
+      Login ou mot de passe incorect ! <br />
+      Veuillez réessayer 
+    </div>
+
+    <!-- information erreur http -->
+    <div *ngIf="erreurHttp" class="alert alert-danger" role="alert">
+      Une erreur est survenu ! <br />
+      Veuillez verifier votre connexion ou réessayer plus  :)
+    </div>
+
+    <!-- information erreur http -->
+    <div *ngIf="messageCompteSupprimer" class="alert alert-info" role="alert">
+      Votre compte à bien été supprimer !
+    </div>
+
+</div>
+

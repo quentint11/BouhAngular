@@ -1,0 +1,22 @@
+body{
+    font-family: 'Montserrat Alternates', sans-serif;
+    letter-spacing: 1px;
+}
+
+button{
+    font-size: 1em;
+}
+
+p{
+    font-size: 1em;
+}
+
+a{
+    font-size: 1em;
+}
+
+ul li{
+    font-size: 1em;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

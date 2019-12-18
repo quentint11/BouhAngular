@@ -1,0 +1,98 @@
+    
+
+<form class="container" #f="ngForm">
+        <h2 style="text-align: center;">Inscription</h2>
+
+    <div class="form-row">
+                <!-- nom -->
+        <div class="input-group col-lg-6">
+            <div class="input-group-prepend">
+            <span style="padding-left: 40px; width: 130px;" class="input-group-text bg-secondary text-white" id="basic-addon3">Nom*</span>
+            </div>
+            <input type="email" name="NOM_UTILISATEUR" maxlength="50" class="form-control bg-light" aria-describedby="basic-addon3" ngModel required />
+        </div>
+
+        <!-- prenom -->
+        <div class="input-group col-lg-6">
+            <div class="input-group-prepend">
+            <span style="padding-left: 25px; width: 130px;" class="input-group-text bg-secondary text-white" id="basic-addon3">Prenom*</span>
+            </div>
+            <input type="email" name="PRENOM_UTILISATEUR" maxlength="50" class="form-control bg-light" aria-describedby="basic-addon3" ngModel required />
+        </div>
+
+        <!-- telephone -->
+        <div class="input-group col-lg-6">
+            <div class="input-group-prepend">
+            <span style="padding-left: 15px; width: 130px;" class="input-group-text bg-secondary text-white" id="basic-addon3">Telephone*</span>
+            </div>
+            <input type="tel" name="TEL_UTILISATEUR" maxlength="10" class="form-control bg-light" aria-describedby="basic-addon3" ngModel required />
+        </div>
+
+        <!-- speudo -->
+        <div class="input-group col-lg-6">
+            <div class="input-group-prepend">
+            <span style="padding-left: 25px; width: 130px;" class="input-group-text bg-secondary text-white" id="basic-addon3">Pseudo*</span>
+            </div>
+            <input type="text" name="PSEUDO_UTILISATEUR" maxlength="15" class="form-control bg-light" aria-describedby="basic-addon3" ngModel required />
+        </div>
+
+    </div>
+
+    <br /><br /><br />
+
+        <h4 style="text-align: center;">Compte Utilisateur</h4>
+        <br />
+
+    <!-- login (mail) -->
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span style="padding-left: 2px;" class="input-group-text bg-secondary text-white" id="basic-addon3">Login connexion*</span>
+        </div>
+        <input type="email" name="MAIL_UTILISATEUR" maxlength="50" class="form-control bg-light" placeholder="Mail" aria-describedby="basic-addon3" ngModel required />
+    </div>
+
+    <!-- MDP -->
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span style="padding-left: 15px;" class="input-group-text bg-secondary text-white" id="basic-addon1">Mot de passe*</span>
+        </div>
+        <input [type]="vueMdp ? 'text' : 'password'" name="MOTDEPASSE_UTILISATEUR" class="form-control bg-light" placeholder="mot de passe" aria-describedby="basic-addon1" ngModel required />
+
+        <div class="input-group-append">
+            <button (click)="onVoirMdp()" class="btn btn-outline-info">voir</button>
+        </div>      
+    </div>
+
+    <div class="boutton">
+        <button class="btn btn-outline-success" (click)="onNouveauCompte(f)" [disabled]="f.invalid">Valider</button>&nbsp;
+        <button class="btn btn-outline-danger" type="reset" >Annuler</button>
+    </div>
+
+
+    
+</form>
+
+<div class="container">
+    <!-- information connecter -->
+    <div *ngIf="compteCree" class="alert alert-success" role="alert">
+        Votre compte a été crée !
+    </div>
+
+        <!-- information connecter -->
+    <div *ngIf="erreurHttp" class="alert alert-danger" role="alert">
+        Une erreur est survenu veuillez réessayer plus tard !
+    </div>
+
+    <!-- information connecter -->
+    <div *ngIf="erreurMail" class="alert alert-info" role="alert">
+            Le mail existe deja !
+        </div>
+    
+            <!-- information connecter -->
+        <div *ngIf="erreurPseudo" class="alert alert-info" role="alert">
+            Le pseudo existe deja !
+        </div>
+</div>
+
+
+

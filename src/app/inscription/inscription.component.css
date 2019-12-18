@@ -1,0 +1,13 @@
+span{
+    width: 170px;
+}
+
+.form-row > .col, .form-row > [class*="col-"]
+{
+    margin-top: 20px;
+}
+.boutton button{
+
+    height: 50px;
+    width: 150px;
+}

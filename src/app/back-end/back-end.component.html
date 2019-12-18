@@ -1,0 +1,59 @@
+<div class="mat-elevation-z8">
+    <!-- tableau source -->
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Nom Column -->
+      <ng-container matColumnDef="Nom">
+        <th mat-header-cell *matHeaderCellDef> Nom </th>
+        <td mat-cell *matCellDef="let element"> {{ element.NOM_UTILISATEUR }} </td>
+      </ng-container>
+  
+      <!-- Prenom Column -->
+      <ng-container matColumnDef="Prenom">
+        <th mat-header-cell *matHeaderCellDef> Prenom </th>
+        <td mat-cell *matCellDef="let element"> {{ element.PRENOM_UTILISATEUR }} </td>
+      </ng-container>
+  
+      <!-- Pseudo Column -->
+      <ng-container matColumnDef="Pseudo">
+        <th mat-header-cell *matHeaderCellDef> Pseudo </th>
+        <td mat-cell *matCellDef="let element"> {{ element.PSEUDO_UTILISATEUR }} </td>
+      </ng-container>
+  
+      <!-- Telephone Column -->
+      <ng-container matColumnDef="Telephone">
+        <th mat-header-cell *matHeaderCellDef> Telephone </th>
+        <td mat-cell *matCellDef="let element"> {{ element.TEL_UTILISATEUR }} </td>
+      </ng-container>
+
+      <!-- Mail Column -->
+      <ng-container matColumnDef="Mail">
+        <th mat-header-cell *matHeaderCellDef> Mail </th>
+        <td mat-cell *matCellDef="let element"> {{ element.MAIL_UTILISATEUR }} </td>
+      </ng-container>
+  
+      <!-- Boutton Column -->
+      <ng-container matColumnDef="Supprimer">
+          <th mat-header-cell *matHeaderCellDef> boutton supp </th>
+          <td mat-cell *matCellDef="let element"><button (click)="onSupprimer(element.ID_UTILISATEUR)" class="btn btn-danger">supprimer</button></td>
+        </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+    <!-- Filtre pagination -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+<div class="container">
+    <!-- information compte supprimer -->
+    <div *ngIf="compteSupp" class="alert alert-success" role="alert">
+        Le compte à été supprimer !
+    </div>
+
+        <!-- information erreur http -->
+    <div *ngIf="erreurHttp" class="alert alert-danger" role="alert">
+        Une erreur est survenu veuillez réessayer plus tard !
+    </div>
+</div>

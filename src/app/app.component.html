@@ -1,0 +1,12 @@
+<ul *ngIf="!estCo" class="nav nav-tabs">
+    <li class="nav-item">
+      <a routerLinkActive="active" class="nav-link" routerLink="">Connexion</a>
+    </li>
+    <li class="nav-item">
+      <a routerLinkActive="active" class="nav-link" routerLink="inscription">Inscription</a>
+    </li>
+</ul>
+
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>
